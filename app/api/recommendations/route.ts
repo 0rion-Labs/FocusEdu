@@ -15,11 +15,16 @@ try {
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
+interface StarredCourse {
+  title: string;
+  [key: string]: unknown;
+}
+
 interface RequestBody {
   topic: string;
   skillLevel: 'beginner' | 'intermediate' | 'advanced';
   history?: string[];
-  starredCourses?: any[];
+  starredCourses?: StarredCourse[];
 }
 
 export async function POST(request: NextRequest) {
@@ -123,7 +128,7 @@ async function generateAIRecommendations(
   topic: string,
   skillLevel: string,
   history: string[],
-  starredCourses: any[]
+  starredCourses: StarredCourse[]
 ) {
   if (!Groq || !GROQ_API_KEY) {
     return generateFallbackRecommendations(topic, skillLevel);
@@ -147,7 +152,7 @@ async function generateAIRecommendations(
           content: prompt
         }
       ],
-      model: 'llama-3.3-70b-versatile',
+      model: 'openai/gpt-oss-120b',
       temperature: 0.7,
       max_tokens: 2000,
       response_format: { type: 'json_object' }
@@ -212,7 +217,7 @@ function buildAIPrompt(
   topic: string,
   skillLevel: string,
   history: string[],
-  starredCourses: any[]
+  starredCourses: StarredCourse[]
 ): string {
   const historyContext = history.length > 0
     ? `The user has recently searched for: ${history.join(', ')}.`

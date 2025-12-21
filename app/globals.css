@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
+.perspective-container {
+  perspective: 1000px;
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
