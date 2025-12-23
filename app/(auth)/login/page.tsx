@@ -1,20 +1,86 @@
 "use client";
 import React, { useState } from 'react'
+import { useRouter } from "next/navigation";
 import Background from '../../components/Background'
 import Link from 'next/link'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+
+
+
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    console.log({ email, password })
-    setTimeout(() => setIsLoading(false), 1500)
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  console.log("🔥 Submit clicked");
+
+  setIsLoading(true);
+
+  try {
+    console.log("📨 Email:", email);
+    console.log("🔑 Password:", password);
+
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    console.log("✅ Login success:", userCredential.user);
+    
+    router.push("/resume-analysis");
+    alert("Login successful!");
+  } catch (error: any) {
+    console.error("❌ Login error:", error);
+    alert(error.message);
+  } finally {
+    setIsLoading(false);
   }
+};
+const handleGoogleLogin = async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+
+    const user = result.user;
+
+    // 🔍 Check if user document already exists
+    const userRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userRef);
+
+    // 🆕 Create only if first login
+    if (!snap.exists()) {
+      await setDoc(userRef, {
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        provider: "google",
+        createdAt: new Date(),
+      });
+    }
+
+    router.push("/resume-analysis");
+  } catch (error: any) {
+    console.error("❌ Google Login Error:", error);
+    alert(error.message);
+  }
+};
+
+
+
+
+
 
   return (
     <div style={{ minHeight: '100vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px' }}>
@@ -224,7 +290,10 @@ const LoginPage = () => {
 
           {/* Social Login */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-            <button style={{
+            <button 
+            type="button"
+            onClick={handleGoogleLogin}
+            style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
