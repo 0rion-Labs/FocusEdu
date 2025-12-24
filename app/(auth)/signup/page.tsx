@@ -51,7 +51,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           style={{
             position: "absolute",
             inset: "-4px",
-            background: "linear-gradient(to right, #f59e0b, #dc2626, #f59e0b)",
+            background: "linear-gradient(to right, #7c3aed, #c026d3, #7c3aed)",
             borderRadius: "20px",
             filter: "blur(20px)",
             opacity: 0.3,
@@ -72,7 +72,11 @@ const handleSubmit = async (e: React.FormEvent) => {
         >
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: "16px" }}>
-            <h1 style={{ fontSize: "20px", fontWeight: "bold", color: "white" }}>Create Account</h1>
+            <span className="text-xl font-bold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              🎓 FocusEdu
+            </span>
+            <p style={{ color: '#9ca3af', fontSize: '10px', marginTop: '2px' }}>by Orion Labs</p>
+            <h1 style={{ fontSize: "20px", fontWeight: "bold", color: "white", marginTop: "12px" }}>Create Account</h1>
             <p style={{ fontSize: "12px", color: "#d1d5db" }}>
               Join and start your learning journey
             </p>
@@ -129,7 +133,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               style={{
                 marginTop: "6px",
                 padding: "10px",
-                background: "linear-gradient(to right, #f59e0b, #dc2626)",
+                background: "linear-gradient(to right, #7c3aed, #c026d3)",
                 borderRadius: "8px",
                 color: "white",
                 fontWeight: 600,
@@ -145,7 +149,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           {/* Footer */}
           <p style={{ marginTop: "14px", textAlign: "center", fontSize: "12px", color: "#9ca3af" }}>
             Already have an account?{" "}
-            <Link href="/login" style={{ color: "#fbbf24", fontWeight: 500 }}>
+            <Link href="/login" style={{ color: "#a78bfa", fontWeight: 500 }}>
               Sign In
             </Link>
           </p>
@@ -157,8 +161,8 @@ const handleSubmit = async (e: React.FormEvent) => {
           color: #6b7280;
         }
         input:focus {
-          border-color: rgba(245, 158, 11, 0.5);
-          box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+          border-color: rgba(124, 58, 237, 0.5);
+          box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.25);
           outline: none;
         }
       `}</style>

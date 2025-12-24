@@ -92,7 +92,7 @@ const handleGoogleLogin = async () => {
         <div style={{
           position: 'absolute',
           inset: '-4px',
-          background: 'linear-gradient(to right, #f59e0b, #dc2626, #f59e0b)',
+          background: 'linear-gradient(to right, #7c3aed, #c026d3, #7c3aed)',
           borderRadius: '20px',
           filter: 'blur(20px)',
           opacity: 0.3,
@@ -110,22 +110,11 @@ const handleGoogleLogin = async () => {
         }}>
           {/* Logo/Brand */}
           <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              background: 'linear-gradient(to bottom right, #fbbf24, #dc2626)',
-              marginBottom: '8px',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-            }}>
-              <svg style={{ width: '20px', height: '20px', color: 'white' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <h1 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '2px' }}>Welcome Back</h1>
+            <span className="text-xl font-bold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              🎓 FocusEdu
+            </span>
+            <p style={{ color: '#9ca3af', fontSize: '10px', marginTop: '2px' }}>by Orion Labs</p>
+            <h1 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '2px', marginTop: '12px' }}>Welcome Back</h1>
             <p style={{ color: '#d1d5db', fontSize: '12px' }}>Sign in to continue your learning journey</p>
           </div>
 
@@ -233,11 +222,11 @@ const handleGoogleLogin = async () => {
               <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
                 <input
                   type="checkbox"
-                  style={{ width: '14px', height: '14px', borderRadius: '4px', accentColor: '#f59e0b' }}
+                  style={{ width: '14px', height: '14px', borderRadius: '4px', accentColor: '#8b5cf6' }}
                 />
                 <span style={{ fontSize: '12px', color: '#d1d5db' }}>Remember me</span>
               </label>
-              <Link href="/forgot-password" style={{ fontSize: '12px', color: '#fbbf24', textDecoration: 'none' }}>
+              <Link href="/forgot-password" style={{ fontSize: '12px', color: '#a78bfa', textDecoration: 'none' }}>
                 Forgot password?
               </Link>
             </div>
@@ -249,7 +238,7 @@ const handleGoogleLogin = async () => {
               style={{
                 width: '100%',
                 padding: '8px 14px',
-                background: 'linear-gradient(to right, #f59e0b, #dc2626)',
+                background: 'linear-gradient(to right, #7c3aed, #c026d3)',
                 color: 'white',
                 fontWeight: '600',
                 borderRadius: '8px',
@@ -261,7 +250,7 @@ const handleGoogleLogin = async () => {
                 justifyContent: 'center',
                 gap: '6px',
                 fontSize: '14px',
-                boxShadow: '0 4px 14px 0 rgba(245, 158, 11, 0.25)',
+                boxShadow: '0 4px 14px 0 rgba(124, 58, 237, 0.25)',
               }}
             >
               {isLoading ? (
@@ -333,7 +322,7 @@ const handleGoogleLogin = async () => {
           {/* Sign Up Link */}
           <p style={{ marginTop: '14px', textAlign: 'center', fontSize: '12px', color: '#9ca3af' }}>
             Don&apos;t have an account?{' '}
-            <Link href="/signup" style={{ color: '#fbbf24', fontWeight: '500', textDecoration: 'none' }}>
+            <Link href="/signup" style={{ color: '#a78bfa', fontWeight: '500', textDecoration: 'none' }}>
               Sign up for free
             </Link>
           </p>
@@ -349,8 +338,8 @@ const handleGoogleLogin = async () => {
           color: #6b7280;
         }
         input:focus {
-          border-color: rgba(245, 158, 11, 0.5);
-          box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+          border-color: rgba(124, 58, 237, 0.5);
+          box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.25);
         }
         button:hover:not(:disabled) {
           filter: brightness(1.1);

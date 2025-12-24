@@ -37,8 +37,8 @@ const Background = () => {
     const particleCount = 80
     const maxDistance = 150
 
-    // Pirate-themed colors
-    const colors = ['#f59e0b', '#eab308', '#fbbf24', '#f97316', '#dc2626', '#ffffff']
+    // Violet to Fuchsia gradient colors
+    const colors = ['#7c3aed', '#8b5cf6', '#9333ea', '#a855f7', '#c026d3', '#d946ef']
 
     // Create particle
     const createParticle = (): Particle => {
@@ -110,14 +110,14 @@ const Background = () => {
           if (distance < maxDistance) {
             const opacity = (1 - distance / maxDistance) * 0.4
 
-            // Gradient line for pirate theme
+            // Gradient line for violet-fuchsia theme
             const gradient = ctx.createLinearGradient(
               particles[i].x, particles[i].y,
               particles[j].x, particles[j].y
             )
-            gradient.addColorStop(0, `rgba(245, 158, 11, ${opacity})`) // Amber
-            gradient.addColorStop(0.5, `rgba(220, 38, 38, ${opacity})`) // Red
-            gradient.addColorStop(1, `rgba(245, 158, 11, ${opacity})`) // Amber
+            gradient.addColorStop(0, `rgba(124, 58, 237, ${opacity})`) // Violet
+            gradient.addColorStop(0.5, `rgba(192, 38, 211, ${opacity})`) // Fuchsia
+            gradient.addColorStop(1, `rgba(124, 58, 237, ${opacity})`) // Violet
 
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
@@ -194,7 +194,7 @@ const Background = () => {
       ref={canvasRef}
       className="fixed inset-0 -z-10 pointer-events-none"
       style={{
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #312e81 50%, #1e1b4b 75%, #0f172a 100%)'
+        background: 'linear-gradient(135deg, #0f0720 0%, #2e1065 25%, #4c1d95 50%, #2e1065 75%, #0f0720 100%)'
       }}
     />
   )
