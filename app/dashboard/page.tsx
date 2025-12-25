@@ -182,6 +182,17 @@ export default function DashboardPage() {
 
       <main className="max-w-6xl mx-auto px-6 py-10">
         <h1 className="text-4xl font-bold mb-6">📊 Resume Dashboard</h1>
+        <div className="flex items-center justify-between mb-6">
+          <div />
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => router.push('/github-analysis')}
+              className="px-4 py-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white rounded-lg"
+            >
+              Go to GitHub Analysis
+            </button>
+          </div>
+        </div>
 
         {/* STREAK */}
         <div className="mb-6 p-5 bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-xl">
@@ -192,12 +203,11 @@ export default function DashboardPage() {
         {/* TABS */}
         <div className="flex flex-wrap gap-3 mb-8">
           {[
-            ['resume-analysis', '📊 Resume Analysis'],
+           
             ['grade', '🅰️ Grades'],
             ['sections', '📊 Sections'],
             ['skills', '🧠 Skills'],
             ['history', '📄 History'],
-            ['internship', '💼 Internships'],
             ['export', '📥 Export'],
           ].map(([k, l]) => (
             <button
