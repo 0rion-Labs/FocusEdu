@@ -26,6 +26,7 @@ const InternshipPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('software engineering intern');
   const [location, setLocation] = useState('');
+  const [country, setCountry] = useState('in');
   const [isRemoteOnly, setIsRemoteOnly] = useState(false);
 
   const fetchInternships = async (query: string = searchQuery) => {
@@ -34,9 +35,10 @@ const InternshipPage = () => {
       const searchTerm = query.toLowerCase().includes('intern') ? query : `${query} intern`;
       const locationParam = location ? `&location=${encodeURIComponent(location)}` : '';
       const remoteParam = isRemoteOnly ? '&remote_jobs_only=true' : '';
+      const countryParam = country ? `&country=${country}` : '';
       
       const response = await fetch(
-        `https://jsearch.p.rapidapi.com/search?query=${encodeURIComponent(searchTerm)}${locationParam}${remoteParam}&page=1&num_pages=3`,
+        `https://jsearch.p.rapidapi.com/search?query=${encodeURIComponent(searchTerm)}${locationParam}${remoteParam}${countryParam}&page=1&num_pages=3`,
         {
           method: 'GET',
           headers: {
@@ -129,7 +131,7 @@ const InternshipPage = () => {
             {/* Location Input */}
             <div className="md:w-64 relative">
               <FiMapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-xl" />
-              <input
+              <input 
                 type="text"
                 placeholder="Location"
                 value={location}
@@ -149,6 +151,24 @@ const InternshipPage = () => {
 
           {/* Filters */}
           <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+            {/* Country Filter */}
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className="px-4 py-2 text-sm bg-white/5 border border-white/10 rounded-full text-zinc-300 focus:outline-none focus:border-violet-500/50 cursor-pointer"
+            >
+              <option value="in">🇮🇳 India</option>
+              <option value="us">🇺🇸 United States</option>
+              <option value="gb">🇬🇧 United Kingdom</option>
+              <option value="ca">🇨🇦 Canada</option>
+              <option value="au">🇦🇺 Australia</option>
+              <option value="de">🇩🇪 Germany</option>
+              <option value="sg">🇸🇬 Singapore</option>
+              <option value="">🌍 All Countries</option>
+            </select>
+            
+            <span className="text-zinc-600">|</span>
+            
             <label className="flex items-center gap-2 text-zinc-400 cursor-pointer hover:text-white transition-colors">
               <input
                 type="checkbox"
