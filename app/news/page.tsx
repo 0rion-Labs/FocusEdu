@@ -18,50 +18,33 @@ interface NewsArticle {
 const NewsPage = () => {
   const [news, setNews] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
-  const [category, setCategory] = useState('technology');
-
-  const categories = [
-    { id: 'technology', label: '💻 Technology' },
-    { id: 'business', label: '💼 Business' },
-    { id: 'science', label: '🔬 Science' },
-    { id: 'entertainment', label: '🎬 Entertainment' },
-  ];
-
-  const fetchNews = async (section: string = category) => {
+  const fetchNews = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/news?topic=${section}`);
+      const response = await fetch('/api/news');
       
       const data = await response.json();
       console.log('API Response:', data);
       
-      // Handle different response structures
+      // Handle NewsData.io response format
       let articles: NewsArticle[] = [];
-      if (Array.isArray(data)) {
+      if (data.results && Array.isArray(data.results)) {
+        // NewsData.io format
+        articles = data.results.map((item: any) => ({
+          title: item.title,
+          link: item.link,
+          pubDate: item.pubDate,
+          source: item.source_name || item.source_id || 'News',
+          thumbnail: item.image_url,
+          description: item.description || '',
+        }));
+      } else if (Array.isArray(data)) {
         articles = data.map((item: any) => ({
           title: item.title,
-          link: item.url,
-          pubDate: item.date || item.publishedAt || item.published_at,
-          source: item.source?.name || item.publisher?.name || 'News',
-          thumbnail: item.thumbnail || item.image || item.urlToImage,
-          description: item.excerpt || item.description || '',
-        }));
-      } else if (data.data && Array.isArray(data.data)) {
-        articles = data.data.map((item: any) => ({
-          title: item.title,
-          link: item.url,
-          pubDate: item.date || item.publishedAt || item.published_at,
-          source: item.source?.name || item.publisher?.name || 'News',
-          thumbnail: item.thumbnail || item.image || item.urlToImage,
-          description: item.excerpt || item.description || '',
-        }));
-      } else if (data.articles && Array.isArray(data.articles)) {
-        articles = data.articles.map((item: any) => ({
-          title: item.title,
-          link: item.url,
-          pubDate: item.date || item.publishedAt,
-          source: item.source?.name || 'News',
-          thumbnail: item.thumbnail || item.image,
+          link: item.url || item.link,
+          pubDate: item.date || item.publishedAt || item.pubDate,
+          source: item.source?.name || item.source_name || 'News',
+          thumbnail: item.thumbnail || item.image || item.image_url,
           description: item.excerpt || item.description || '',
         }));
       }
@@ -115,26 +98,6 @@ const NewsPage = () => {
           <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
             Stay updated with the latest technology news and trends
           </p>
-        </div>
-
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => {
-                setCategory(cat.id);
-                fetchNews(cat.id);
-              }}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                category === cat.id
-                  ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-lg shadow-violet-500/25'
-                  : 'bg-white/5 text-zinc-400 border border-white/10 hover:border-violet-500/50 hover:text-white'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
         </div>
 
         {/* News Grid */}
