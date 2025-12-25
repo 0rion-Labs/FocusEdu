@@ -307,6 +307,14 @@ export default function ResumeAnalysisPage() {
             </span>
           ))}
         </div>
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={() => router.push('/dashboard')}
+            className="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full transition"
+          >
+            Go to Dashboard
+          </button>
+        </div>
 
         {/* Upload Section */}
         <section className="mb-12">
