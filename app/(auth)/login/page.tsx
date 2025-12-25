@@ -71,7 +71,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     console.log("✅ Firestore write success");
 
-    router.push("/resume-analysis");
+    router.push("/home");
   } catch (error: any) {
     console.error("❌ Google Login Error:", error);
     alert(error.message);

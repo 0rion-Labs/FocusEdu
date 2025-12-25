@@ -13,8 +13,10 @@ const navLinks = [
   { name: 'About', href: '/about' },
   { name: 'Services', href: '/services' },
   { name: 'Contact', href: '/contact' },
-  {name:'Suggestions',href:'/suggestions'}
-  
+]
+
+const authenticatedNavLinks = [
+  { name: 'Suggestions', href: '/suggestions' }
 ]
 
 export default function Navbar() {
@@ -50,6 +52,15 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-gray-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
+              {user && authenticatedNavLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
@@ -98,6 +109,16 @@ export default function Navbar() {
         <div className="md:hidden bg-black/90 backdrop-blur-xl">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-gray-300 hover:text-white block px-3 py-4 text-base font-medium border-b border-white/5"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+            {user && authenticatedNavLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
