@@ -27,7 +27,7 @@ const Canvas = dynamic(
 function CameraRig() {
   const { camera, mouse } = useThree();
   const vec = new THREE.Vector3();
-  useFrame(() => camera.position.lerp(vec.set(mouse.x * 2, mouse.y * 1, camera.position.z), 0.02));
+  useFrame(() => camera.position.lerp(vec.set(mouse.x * 0.7, mouse.y * 0.3, camera.position.z), 0.02));
   return null;
 }
 
