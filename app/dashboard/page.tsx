@@ -200,6 +200,12 @@ export default function DashboardPage() {
             >
               GitHub Analysis
             </Link>
+            <Link
+              href="/internship"
+              className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white rounded-xl transition-all text-sm font-semibold shadow-md hover:shadow-emerald-500/20"
+            >
+              Internship
+            </Link>
           </div>
         </div>
 

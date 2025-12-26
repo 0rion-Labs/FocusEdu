@@ -20,6 +20,7 @@ const authenticatedNavLinks = [
   { name: 'Suggestions', href: '/suggestions', icon: Sparkles },
   { name: 'Resume Analysis', href: '/resume-analysis', icon: FileText },
   { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
+  { name: 'Internship', href: '/internship', icon: GraduationCap },
 ]
 
 export default function Navbar() {
